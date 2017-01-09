@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <title>Grashof Plaza tekeningenarchief</title>
+        <link rel="apple-touch-icon-precomposed" href="assets/favicon-152.png">
+        <link rel="stylesheet" type="text/css" href="components/site.min.css">
+        <link rel="stylesheet" type="text/css" href="components/reset.min.css">
+
+
+        <link rel="stylesheet" type="text/css" href="components/container.min.css">
+        <!-- <link rel="stylesheet" type="text/css" href="components/grid.min.css"> -->
+        <link rel="stylesheet" type="text/css" href="components/header.min.css">
+        <link rel="stylesheet" type="text/css" href="components/image.min.css">
+        <link rel="stylesheet" type="text/css" href="components/menu.min.css">
+
+        <link rel="stylesheet" type="text/css" href="components/card.min.css">
+        <!-- <link rel="stylesheet" type="text/css" href="components/icon.min.css"> -->
+        <link rel="stylesheet" type="text/css" href="components/segment.min.css">
+        <link rel="stylesheet" type="text/css" href="components/table.min.css">
+
+        <script src="assets/lib/jquery-3.1.1.min.js"></script>
+        <!-- <script src="components/visibility.min.js"></script> -->
+        <!-- <script src="components/sidebar.min.js"></script> -->
+        <link  href="/assets/lib/fancybox.min.css" rel="stylesheet">
+        <script src="/assets/lib/fancybox.min.js"></script>
+
+        <script type="text/javascript">
+            window.lazySizesConfig = window.lazySizesConfig || {};
+
+            // tell lazy sizes to only load stuff that is strictly in view
+            //  1 === strictly in view
+            //  2 === soon to be in view,
+            //  3 === not so soon to be in view
+            //  0 === don't load anything
+            lazySizesConfig.loadMode=1;
+        </script>
+        <script src="assets/lib/lazysizes.min.js"></script>
+        <!-- <script src="assets/lib/lazysizes.min.js" async=""></script> -->
+        <style media="screen">
+            #mobilemenu {
+                display: none;
+            }
+            @media only screen and (max-width: 767px/*@largestMobileScreen*/) {
+                #screenmenu {
+                    display: none;
+                }
+                #mobilemenu {
+                    display: flex;
+                }
+            }
+            .bump {
+                margin-bottom: 5em;
+            }
+            .lazyload {
+                opacity: 0;
+            }
+            .lazyloading {
+                opacity: 0.1;
+                transition: opacity 300ms;
+            }
+            img.lazyloaded {
+                opacity: 1;
+                transition: opacity 300ms;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- la header -->
+        <div class="page header">
+            <div class="ui borderless main menu fixed">
+                <div id="mobilemenu" class="ui text container">
+                    <a href="#" class="header item">
+                        <img class="image" class="logo" src="assets/images/logo.svg">
+                        Grashof Plaza
+                        <i class="dropdown icon"></i>
+                    </a>
+                </div>
+                <div id="screenmenu" class="ui text container">
+                    <a href="#" class="header item">
+                        <img class="image" class="logo" src="assets/images/logo.svg">
+                        Grashof Plaza
+                    </a>
+                    {{#each thing}}
+                    <a href="#{{section}}" class="item">{{section}}</a>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        <!-- le content -->
+        <div class="ui">
+            <div id="intro" class="bump">&nbsp;</div>
+            <div class="ui container segment padded">
+                <h1 class="ui header">Het archief van Hans</h1>
+                <p class="ui text">
+                    Hieronder vind je een kleine selectie van schilderijen en
+                    tekeningen die Hans gemaakt heeft.
+                </p>
+            </div>
+        {{#each thing}}
+        <div id="{{section}}" class="bump">&nbsp;</div>
+        <div class="ui container segment padded">
+            <h1 class="ui header">{{section}}</h1>
+            <div class="ui four stackable cards">
+                {{#each pictures}}
+                <div class="ui raised link card">
+                    <a data-fancybox="collection"
+                       data-caption="{{../section}} > <b>{{title}}</b><br/>{{description}}" href="{{picture}}">
+                        <img class="ui centered image lazyload" src="assets/images/logo.svg" data-src="{{thumb}}">
+                        <!-- <img class="ui centered image lazyload" src="assets/images/logo.svg" data-src="{{picture}}"> -->
+                    </a>
+                    <div class="content">
+                        <div class="header">{{title}}</div>
+                        <div class="meta">{{description}}</div>
+                    </div>
+                </div>
+                {{/each}} <!--pictures -->
+            </div> <!-- stackable cards -->
+        </div> <!-- container segment -->
+        {{/each}} <!-- thing -->
+        </div> <!-- class="ui" -->
+        <!-- la footer -->
+        <div class="ui vertical footer segment">
+            <div class="ui container segment padded">
+                <div class="ui stackable divided equal height stackable grid">
+                    <div class="eight wide column">
+                        <h2 class="ui header">Hoewiewatwaar</h2>
+                        <table class="ui very basic collapsing celled table">
+                            <tbody>
+                                <tr>
+                                    <td>Kopieerrechten</td>
+                                    <td>Hans Verweij</td>
+                                </tr>
+                                <tr>
+                                    <td>Elektronische post</td>
+                                    <td>grashofplaza@yandex.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="seven wide column">
+                        <div class="ui medium image" >
+                            <img class="image lazyload" src="assets/images/logo.svg" data-src="assets/images/hans.jpg" alt="Dit is Hans">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
