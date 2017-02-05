@@ -3,23 +3,24 @@
 const fs   = require('fs');
 const path = require('path');
 
-const SMURFED_FILENAME_RE = /^[^;]+;[^;]+;[^.]+\.jpg$/;
+const SMURFED_FILENAME_RE = /^([^;]+);([^;]+);([^.]+)\.jpg$/;
 const CONTENT_DIR         = "src/content";
 const BASE_DIR            = "src";
 
 const matches = pPattern => pString => pPattern.test(pString);
 
-const chopName = pPictureString => path.parse(pPictureString).name.split(";").map(s => s.trim());
+const chopName = pPictureString => path.parse(pPictureString).base.match(SMURFED_FILENAME_RE).map(s => s.trim());
 
-function picture2somethingUseful(pPictureString) {
+const picture2somethingUseful = (pPictureString) => {
     const lChoppedName = chopName(pPictureString);
     const lPath = path.parse(pPictureString);
 
     return {
+        dirname: path.relative(BASE_DIR, path.dirname(pPictureString)),
         picture: path.relative(BASE_DIR, pPictureString),
-        thumb: path.relative(BASE_DIR, path.join(lPath.dir, lChoppedName[0].concat("_klein", lPath.ext))),
-        title: lChoppedName[1],
-        description: lChoppedName[2]
+        thumb: path.relative(BASE_DIR, path.join(lPath.dir, lPath.name.concat("_klein", lPath.ext))),
+        title: lChoppedName[2],
+        description: lChoppedName[3]
     };
 }
 

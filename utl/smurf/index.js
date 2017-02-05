@@ -3,12 +3,12 @@
 const extractCollection = require("./extractCollection");
 const jsonReport        = require('./jsonReport');
 const htmlReport        = require('./htmlReport');
-const mkThumbsReport    = require('./mkThumbsReport');
+const scriptReport      = require('./scriptReport');
 
 const FORMAT2REPORTER = {
     html: htmlReport,
     json: jsonReport,
-    mkThumbs: mkThumbsReport
+    scrippie: scriptReport
 };
 
 process.stdout.write((FORMAT2REPORTER[process.argv[2]] || htmlReport)(extractCollection()));

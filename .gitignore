@@ -18,4 +18,5 @@ tmp_*.md
 npm-debug.log
 isolate-*-v8.log
 .dependency-cruiser.json
+.vscode
 dist

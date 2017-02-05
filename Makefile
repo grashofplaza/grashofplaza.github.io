@@ -41,14 +41,8 @@ $(DIST)/assets/lib/%: src/assets/lib/%
 $(DIST)/assets/images/%: src/assets/images/%
 	cp $< $@
 
-$(DIST)/content: src/content
-	cp -R $< $@
-
-$(DIST)/content/%_klein.jpg: src/klein/%_klein.jpg
-	convert $< \( -clone 0 -resize $(THUMB_SIZE)x$(THUMB_SIZE) -strip \) -delete 0 - | \
-	jpegtran -copy none -optimize -progressive > $@
-
-include thumbnails.mk
+$(DIST)/content/%_klein.jpg: src/content/%.jpg
+	sh utl/thumbify.sh $(THUMB_SIZE) $< $@
 
 #
 # phony targets
@@ -71,9 +65,8 @@ dist: $(DIST_DIRS) \
 	$(DIST)/components/card.min.css \
 	$(DIST)/components/segment.min.css \
 	$(DIST)/components/table.min.css \
-	$(DIST)/content \
-	$(DIST)/index.html \
-	$(DIST_THUMBNAILS)
+	$(DIST)/index.html
+	node utl/smurf scrippie | sh
 
 thumbinclude:
 	node utl/smurf mkThumbs > thumbnails.mk

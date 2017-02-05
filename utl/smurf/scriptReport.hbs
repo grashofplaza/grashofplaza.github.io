@@ -1,0 +1,7 @@
+{{#each thing}}
+{{#each pictures}}
+mkdir -p dist/{{{dirname}}}
+jpegtran -copy none -optimize -progressive < "src/{{{picture}}}" > "dist/{{{picture}}}"
+sh utl/thumbify.sh 256 "src/{{{picture}}}" "dist/{{{thumb}}}" 
+{{/each}}
+{{/each}}
