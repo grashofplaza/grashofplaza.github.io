@@ -4,16 +4,14 @@ DIST=dist
 DIST_DIRS=$(DIST)/assets/images \
 	$(DIST)/assets/lib \
 	$(DIST)/components
-THUMB_SIZE=256
 FAVICON_MASTER=src/assets/images/logo.png
 
-.PHONY: help dist publish clean
+.PHONY: help dist clean
 
 help:
 	@echo "available targets:"
 	@echo
 	@echo dist
-	@echo publish
 	@echo clean
 	@echo
 
@@ -41,9 +39,6 @@ $(DIST)/assets/lib/%: src/assets/lib/%
 $(DIST)/assets/images/%: src/assets/images/%
 	cp $< $@
 
-$(DIST)/content/%_klein.jpg: src/content/%.jpg
-	sh utl/thumbify.sh $(THUMB_SIZE) $< $@
-
 #
 # phony targets
 #
@@ -67,12 +62,6 @@ dist: $(DIST_DIRS) \
 	$(DIST)/components/table.min.css \
 	$(DIST)/index.html
 	node utl/smurf scrippie | sh
-
-thumbinclude:
-	node utl/smurf mkThumbs > thumbnails.mk
-
-publish:
-	git subtree push --prefix $(DIST) origin master
 
 clean:
 	rm -rf dist/*
