@@ -1387,5 +1387,21 @@
                 </div>
             </div>
         </div>
+        <script>
+            function attachEventHandler (pQuerySelector, pEvent, pFunction) {
+                var lNodes = document.querySelectorAll(pQuerySelector);
+                for (var i = 0; i < lNodes.length; i++){
+                    lNodes[i].addEventListener(pEvent, pFunction, false);
+                }
+            }
+            attachEventHandler("a[href]", "click", function(e){
+                var lTarget = "unknown";
+
+                if (e.currentTarget && e.currentTarget.href){
+                    lTarget = e.currentTarget.href;
+                }
+                ga('send', 'event', 'link', lTarget);
+            });
+        </script>
     </body>
 </html>
