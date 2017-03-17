@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="google-site-verification" content="G7Qv6VkSE89m8dMe9LGXIR5VlycCrVLD53OmmtTYsKw" />
         <title>Grashof Plaza tekeningenarchief</title>
         <link rel="apple-touch-icon-precomposed" href="assets/favicon-152.png">
         <link rel="stylesheet" type="text/css" href="components/site.min.css">
@@ -64,7 +65,20 @@
                 opacity: 1;
                 transition: opacity 300ms;
             }
+            .meta {
+                color: #767676!important;
+            }
         </style>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-93906859-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
     </head>
     <body>
         <!-- la header -->
@@ -72,14 +86,14 @@
             <div class="ui borderless main menu fixed">
                 <div id="mobilemenu" class="ui text container">
                     <a href="#" class="header item">
-                        <img class="image" class="logo" src="assets/images/logo.svg">
+                        <img class="image" class="logo" src="assets/images/logo.svg" alt="" role="presentation">
                         Grashof Plaza
                         <i class="dropdown icon"></i>
                     </a>
                 </div>
                 <div id="screenmenu" class="ui text container">
                     <a href="#" class="header item">
-                        <img class="image" class="logo" src="assets/images/logo.svg">
+                        <img class="image" class="logo" src="assets/images/logo.svg" alt="" role="presentation">
                         Grashof Plaza
                     </a>
                     {{#each thing}}
@@ -108,7 +122,7 @@
                 <div class="ui raised link card">
                     <a data-fancybox="collection"
                        data-caption="{{../section}} > <b>{{title}}</b><br/>{{description}}" href="{{picture}}">
-                        <img class="ui centered image lazyload" src="assets/images/logo.svg" data-src="{{thumb}}">
+                        <img class="ui centered image lazyload" src="assets/images/logo.svg" alt="{{title}}"data-src="{{thumb}}">
                     </a>
                     <div class="content">
                         <div class="header">{{title}}</div>
