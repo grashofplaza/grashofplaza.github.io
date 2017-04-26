@@ -1584,7 +1584,17 @@
                     </div>
                     <div class="seven wide column">
                         <div class="ui medium image" >
-                            <img class="image lazyload" src="assets/images/logo.svg" data-src="assets/images/hans.jpg" alt="Dit is Hans">
+                            <style media="screen">
+                                #hans {
+                                    transition: all ease 1.6s;
+                                    transform:rotate(0turn)
+                                }
+                                #hans:hover,#hans:active {
+                                    transition: all ease 1.6s;
+                                    transform:rotate(1turn)
+                                }
+                            </style>
+                            <img id="hans" class="image lazyload" src="assets/images/logo.svg" data-src="assets/images/hans.jpg" alt="Dit is Hans">
                         </div>
                     </div>
                 </div>
