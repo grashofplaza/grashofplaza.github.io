@@ -11,19 +11,19 @@
 
 
         <link rel="stylesheet" type="text/css" href="components/container.min.css">
-        <!-- <link rel="stylesheet" type="text/css" href="components/grid.min.css"> -->
+        {{!-- <link rel="stylesheet" type="text/css" href="components/grid.min.css"> --}}
         <link rel="stylesheet" type="text/css" href="components/header.min.css">
         <link rel="stylesheet" type="text/css" href="components/image.min.css">
         <link rel="stylesheet" type="text/css" href="components/menu.min.css">
 
         <link rel="stylesheet" type="text/css" href="components/card.min.css">
-        <!-- <link rel="stylesheet" type="text/css" href="components/icon.min.css"> -->
+        {{!-- <link rel="stylesheet" type="text/css" href="components/icon.min.css"> --}}
         <link rel="stylesheet" type="text/css" href="components/segment.min.css">
         <link rel="stylesheet" type="text/css" href="components/table.min.css">
 
         <script src="assets/lib/jquery-3.1.1.min.js"></script>
-        <!-- <script src="components/visibility.min.js"></script> -->
-        <!-- <script src="components/sidebar.min.js"></script> -->
+        {{!-- <script src="components/visibility.min.js"></script> --}}
+        {{!-- <script src="components/sidebar.min.js"></script> --}}
         <link  href="assets/lib/fancybox.min.css" rel="stylesheet">
         <script src="assets/lib/fancybox.min.js"></script>
 
@@ -81,7 +81,7 @@
         </script>
     </head>
     <body>
-        <!-- la header -->
+        {{!-- la header --}}
         <div class="page header">
             <div class="ui borderless main menu fixed">
                 <div id="mobilemenu" class="ui text container">
@@ -103,7 +103,7 @@
             </div>
         </div>
 
-        <!-- le content -->
+        {{!-- le content --}}
         <div class="ui">
             <div id="intro" class="bump">&nbsp;</div>
             <div class="ui container segment padded">
@@ -129,12 +129,12 @@
                         <div class="meta">{{description}}</div>
                     </div>
                 </div>
-                {{/each}} <!--pictures -->
-            </div> <!-- stackable cards -->
-        </div> <!-- container segment -->
-        {{/each}} <!-- thing -->
-        </div> <!-- class="ui" -->
-        <!-- la footer -->
+                {{/each}} {{!--pictures --}}
+            </div> {{!-- stackable cards --}}
+        </div> {{!-- container segment --}}
+        {{/each}} {{!-- thing --}}
+        </div> {{!-- class="ui" --}}
+        {{!-- la footer --}}
         <div class="ui vertical footer segment">
             <div class="ui container segment padded">
                 <div class="ui stackable divided equal height stackable grid">
@@ -155,11 +155,37 @@
                     </div>
                     <div class="seven wide column">
                         <div class="ui medium image" >
-                            <img class="image lazyload" src="assets/images/logo.svg" data-src="assets/images/hans.jpg" alt="Dit is Hans">
+                            <style media="screen">
+                                #hans {
+                                    transition: all ease 1.6s;
+                                    transform:rotate(0turn)
+                                }
+                                #hans:hover,#hans:active {
+                                    transition: all ease 1.6s;
+                                    transform:rotate(1turn)
+                                }
+                            </style>
+                            <img id="hans" class="image lazyload" src="assets/images/logo.svg" data-src="assets/images/hans.jpg" alt="Dit is Hans">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            function attachEventHandler (pQuerySelector, pEvent, pFunction) {
+                var lNodes = document.querySelectorAll(pQuerySelector);
+                for (var i = 0; i < lNodes.length; i++){
+                    lNodes[i].addEventListener(pEvent, pFunction, false);
+                }
+            }
+            attachEventHandler("a[href]", "click", function(e){
+                var lTarget = "unknown";
+
+                if (e.currentTarget && e.currentTarget.href){
+                    lTarget = e.currentTarget.href;
+                }
+                ga('send', 'event', 'link', lTarget);
+            });
+        </script>
     </body>
 </html>
